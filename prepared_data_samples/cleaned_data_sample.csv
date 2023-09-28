@@ -1,0 +1,11 @@
+,visit_number,utm_source,utm_medium,utm_campaign,utm_adcontent,device_category,device_brand,device_browser,event_value,visit_hour,visit_month,visit_day,visit_day_of_week,place,screen_width,screen_height
+0,1,ZpYIoDJMcFzVoPFsHGJL,banner,LEoPHuyFvzoNfnzGgfcd,vCIpmpaGBnIQhyYNkXqp,mobile,Huawei,Chrome,0,14,11,24,2,russia_zlatoust,360,720
+2,1,MvfHsxITijuriZxsqZqt,cpm,FTjNLDyTrXaWYgZymFkV,xhoenQgDQsgfEPYNPwKO,mobile,Samsung,Samsung Internet,0,8,11,14,6,russia_moscow,385,854
+6,1,ZpYIoDJMcFzVoPFsHGJL,banner,LEoPHuyFvzoNfnzGgfcd,vCIpmpaGBnIQhyYNkXqp,mobile,Huawei,Chrome,0,2,12,28,1,russia_krasnoyarsk,360,720
+19,1,kjsLglQLzykiRbcDiGcD,cpc,unknown,NOBKLgtuvqYWkXQHeYWM,mobile,Xiaomi,Chrome,0,5,5,29,5,russia_moscow,393,786
+24,1,kjsLglQLzykiRbcDiGcD,organic,LTuZkdKfxRGVceoWkVyg,JNHcPlZPxEMWDnRiyoBf,mobile,Apple,Safari,0,12,5,31,0,russia_saint_petersburg,375,812
+90,1,ZpYIoDJMcFzVoPFsHGJL,banner,LEoPHuyFvzoNfnzGgfcd,JNHcPlZPxEMWDnRiyoBf,mobile,Samsung,Chrome,0,19,7,12,0,russia_saint_petersburg,360,640
+98,1,ZpYIoDJMcFzVoPFsHGJL,banner,LEoPHuyFvzoNfnzGgfcd,vCIpmpaGBnIQhyYNkXqp,mobile,Apple,Safari,0,16,12,3,4,russia_moscow,390,844
+108,1,ZpYIoDJMcFzVoPFsHGJL,banner,LEoPHuyFvzoNfnzGgfcd,JNHcPlZPxEMWDnRiyoBf,mobile,Samsung,Chrome,0,16,6,27,6,russia_moscow,412,915
+118,2,ZpYIoDJMcFzVoPFsHGJL,banner,LEoPHuyFvzoNfnzGgfcd,JNHcPlZPxEMWDnRiyoBf,mobile,Samsung,Chrome,0,9,8,20,4,russia_moscow,412,915
+143,1,fDLlAcSmythWSCVMvqvL,none,LTuZkdKfxRGVceoWkVyg,JNHcPlZPxEMWDnRiyoBf,mobile,Samsung,Android Webview,0,22,8,13,4,russia_saint_petersburg,412,869
