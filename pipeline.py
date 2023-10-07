@@ -24,25 +24,12 @@ TARGET_EVENTS = ['sub_car_claim_click', 'sub_car_claim_submit_click',
                  'sub_open_dialog_click', 'sub_custom_question_submit_click',
                  'sub_call_number_click', 'sub_callback_submit_click', 'sub_submit_success',
                  'sub_car_request_submit_click']
-HOUR_PATTERN = re.compile('(\d\d):\d\d:\d\d')
-
-DATE_FORMAT = '%Y-%m-%d'
 
 
-def extract_width(res_str):
-    wharr = res_str.split('x')
-    if len(wharr) == 2:
-        return wharr[0]
-    else:
-        return None
 
 
-def extract_height(res_str):
-    wharr = res_str.split('x')
-    if len(wharr) == 2:
-        return wharr[1]
-    else:
-        return None
+
+
 
 
 # объединяем датафреймы
@@ -105,9 +92,11 @@ def clear_brand_and_os(merged_df):
 
 def clear_datetime_columns(merged_df):
     print('start clear_datetime_columns')
+    DATE_FORMAT = '%Y-%m-%d'
 
     def __extract_hour(timestr):
-        groups = HOUR_PATTERN.findall(timestr)
+        hour_pattern = re.compile(r'(\d\d):\d\d:\d\d')
+        groups = hour_pattern.findall(timestr)
         if len(groups) > 0:
             hour = int(groups[0])
         else:
@@ -155,9 +144,24 @@ def clear_geo(merged_df):
 
 
 def clear_resolution(merged_df):
+    def __extract_width(res_str):
+        wharr = res_str.split('x')
+        if len(wharr) == 2:
+            return wharr[0]
+        else:
+            return None
+
+    def __extract_height(res_str):
+        wharr = res_str.split('x')
+        if len(wharr) == 2:
+            return wharr[1]
+        else:
+            return None
+
+
     print('start clear_resolution')
-    merged_df['screen_width'] = merged_df.apply(lambda row: extract_width(row['device_screen_resolution']), axis=1)
-    merged_df['screen_height'] = merged_df.apply(lambda row: extract_height(row['device_screen_resolution']), axis=1)
+    merged_df['screen_width'] = merged_df.apply(lambda row: __extract_width(row['device_screen_resolution']), axis=1)
+    merged_df['screen_height'] = merged_df.apply(lambda row: __extract_height(row['device_screen_resolution']), axis=1)
     merged_df = merged_df.drop(['device_screen_resolution'], axis=1)
     merged_df['screen_width'] = pd.to_numeric(merged_df['screen_width'], downcast='integer')
     merged_df['screen_height'] = pd.to_numeric(merged_df['screen_height'], downcast='integer')
@@ -175,12 +179,12 @@ def obj_columns_to_categories(merged_df):
 
 def main():
     print('Sber Autopodpiska marketing target event prediction pipeline')
-    merged_df = get_merged_data()
-    merged_df = make_target_column(merged_df)
-    merged_df = balance_data(merged_df)
+    # merged_df = get_merged_data()
+    # merged_df = make_target_column(merged_df)
+    # merged_df = balance_data(merged_df)
 
-    # merged_df = pd.read_csv('prepared_data_samples/balanced_10_06_2023-20_17_48.csv')
-    # merged_df.drop(columns=merged_df.columns[0], axis=1, inplace=True)
+    merged_df = pd.read_csv('prepared_data_samples/balanced_10_06_2023-20_17_48.csv')
+    merged_df.drop(columns=merged_df.columns[0], axis=1, inplace=True)
 
     # merged_df.to_csv(f'prepared_data_samples/balanced_{datetime.now().strftime("%m_%d_%Y-%H_%M_%S")}.csv')
 
@@ -231,7 +235,7 @@ def main():
         ('classifier', model)
     ])
 
-    score = cross_val_score(pipe, X, y, cv=20, scoring='roc_auc', n_jobs=-1)
+    score = cross_val_score(pipe, X, y, cv=20, scoring='roc_auc', n_jobs=2)
 
     print(f'model: {type(model).__name__}, ROC_AUC: {score.mean():.4f}')
 

@@ -6,6 +6,11 @@
 Подробнее в материалах.
 
 
+## Пререквизиты
+
+* python 3.8+
+
+
 ## Данные о модели
 
 В работе используется алгоритм XGBoost Classification
@@ -17,7 +22,7 @@ https://xgboost.readthedocs.io/en/stable/install.html#python
 Так же для ускорения обучения в процессе определения лучших моделей
 использовалось расширение Intel(R) https://github.com/intel/scikit-learn-intelex
 
-Метрика **ROC AUC SCORE:  0.684**
+Метрика **ROC AUC SCORE: ~ 0.67 - 0.684**
 
 ## Структура папок
 
@@ -26,6 +31,53 @@ https://xgboost.readthedocs.io/en/stable/install.html#python
 * /extra_data - дополнительные геоданные по городам
 * /prepared_data_samples - примеры очищенных и подготовленных данных 
 
+
+## Инструкция по запуску сервиса
+
+* установить зависимости
+* сгенерировать модель для запуска на локальном дистрибутиве python
+* запустить сервис
+* запустить тест для демонстрации
+
+```shell
+python3 -m pip install -r requirements.txt
+python3 pipeline.py
+python3 -m uvicorn service:app --reload
+python3 -m pytest service.py
+```
+
+## Работа сервиса
+
+### Пример post-запроса по пути /predict
+
+#### Запрос
+```json
+{
+  "visit_date": "2021-11-24",
+  "visit_time": "14:36:32",
+  "visit_number": 1,
+  "utm_source": "ZpYIoDJMcFzVoPFsHGJL",
+  "utm_medium": "banner",
+  "utm_campaign": "LEoPHuyFvzoNfnzGgfcd",
+  "utm_adcontent": "vCIpmpaGBnIQhyYNkXqp",
+  "utm_keyword": "puhZPIYqKXeFPaUviSjo",
+  "device_category": "mobile",
+  "device_os": "Android",
+  "device_brand": "Huawei",
+  "device_model": "P30 Pro",
+  "device_screen_resolution": "360x720",
+  "device_browser": "Chrome",
+  "geo_country": "Russia",
+  "geo_city": "Zlatoust"
+}
+```
+
+#### Ответ
+```json
+{
+  "event_value": 0
+}
+```
 
 ## Данные
 

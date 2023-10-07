@@ -1,0 +1,8 @@
+dill
+pandas
+fastapi
+pydantic
+xgboost
+sklearn
+scikit-learn-intelex
+pytest
